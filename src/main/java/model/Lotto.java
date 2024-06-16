@@ -7,6 +7,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        duplication(numbers);
         this.numbers = numbers;
     }
 
@@ -17,4 +18,21 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+    private void duplication(List<Integer> numbers) {
+        for(int i = 0; i < numbers.size(); i++){
+            for(int j = i + 1; j < numbers.size(); j++){
+                duplicationCheck(numbers.get(i), numbers.get(j));
+            }
+        }
+    }
+
+    private void duplicationCheck(int a, int b) {
+        if(a==b){
+            throw new IllegalStateException();
+        }
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }
