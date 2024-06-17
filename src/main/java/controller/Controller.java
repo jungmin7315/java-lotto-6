@@ -10,21 +10,24 @@ import java.util.List;
 
 public class Controller {
     private List<Lotto> lottos = new ArrayList<>();
+    private Lotto winning;
+    private int bonus;
     private Money money = new Money(0);
 
     public void setMoney(int price){
-        money.setPrice(price);
+        this.money.setPrice(price);
     }
 
     public int getMoney(){
-        return money.getPrice();
+        return this.money.getPrice();
     }
 
     public void addLotto(int count){
         try{
             for(int i = 0; i < count; i++){
-                Lotto numbers = new Lotto(numberSort());
-                lottos.add(numbers);
+                List<Integer> lotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+                Lotto numbers = new Lotto(numberSort(lotto));
+                this.lottos.add(numbers);
             }
         } catch (IllegalArgumentException e){
             e.printStackTrace();
@@ -33,14 +36,21 @@ public class Controller {
         }
     }
 
-    public List<Lotto> lottoList(){
-        return lottos;
+    public void addWinnigLotto(List<Integer> numbers){
+        this.winning = new Lotto(numberSort(numbers));
     }
 
-    private List<Integer> numberSort(){
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    public void addBouns(int number){
+        this.bonus = number;
+    }
+
+    private List<Integer> numberSort(List<Integer> numbers){
         numbers.sort(Comparator.naturalOrder());
 
         return numbers;
+    }
+
+    public List<Lotto> lottoList(){
+        return this.lottos;
     }
 }

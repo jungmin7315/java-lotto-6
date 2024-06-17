@@ -1,7 +1,8 @@
 package model;
 
 public class Money {
-    int price;
+    private int price;
+
 
     public Money(int price) {
         this.price = price;

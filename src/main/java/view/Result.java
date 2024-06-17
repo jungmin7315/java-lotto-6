@@ -11,5 +11,6 @@ public class Result {
         input.Money();
         output.lottoAuantity();
         output.lottoNumbers();
+        input.winnigLotto();
     }
 }
