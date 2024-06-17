@@ -12,5 +12,6 @@ public class Result {
         output.lottoAuantity();
         output.lottoNumbers();
         input.winnigLotto();
+        input.bounsNumber();
     }
 }

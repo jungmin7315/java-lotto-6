@@ -22,6 +22,10 @@ public class Controller {
         return this.money.getPrice();
     }
 
+    public Lotto getLotto(){
+        return this.winning;
+    }
+
     public void addLotto(int count){
         try{
             for(int i = 0; i < count; i++){
@@ -40,8 +44,8 @@ public class Controller {
         this.winning = new Lotto(numberSort(numbers));
     }
 
-    public void addBouns(int number){
-        this.bonus = number;
+    public void addBonus(int bonus){
+        this.bonus = bonus;
     }
 
     private List<Integer> numberSort(List<Integer> numbers){
