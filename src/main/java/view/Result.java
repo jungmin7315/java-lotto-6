@@ -12,6 +12,8 @@ public class Result {
         output.lottoAuantity();
         output.lottoNumbers();
         input.winnigLotto();
-        input.bounsNumber();
+        input.bonusNumber();
+        output.winningStatistics();
+        output.totalReturn();
     }
 }
