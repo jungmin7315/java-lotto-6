@@ -8,7 +8,8 @@ import Enum.Reward;
 import java.util.*;
 
 public class Controller {
-    private List<Lotto> lottos = new ArrayList<>();
+    private List<Lotto> lottos =  new ArrayList<>();
+
     private Lotto winning;
     private int bonus;
     private Money money = new Money(0);
@@ -26,17 +27,15 @@ public class Controller {
         return this.winning;
     }
 
-    public int getTotalRewards(){
-        return this.totalRewards.getPrice();
-    }
-
     public void addLotto(int count){
         try{
             for(int i = 0; i < count; i++){
-                List<Integer> lotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-                Lotto numbers = new Lotto(numberSort(lotto));
+                List<Integer> lotto = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+                Collections.sort(lotto);
+                Lotto numbers = new Lotto(lotto);
                 this.lottos.add(numbers);
             }
+
         } catch (IllegalArgumentException e){
             e.printStackTrace();
         } catch (IllegalStateException e){
@@ -45,7 +44,8 @@ public class Controller {
     }
 
     public void addWinnigLotto(List<Integer> numbers){
-        this.winning = new Lotto(numberSort(numbers));
+        Collections.sort(numbers);
+        this.winning = new Lotto(numbers);
     }
 
     public void addBonus(int bonus){
@@ -54,12 +54,6 @@ public class Controller {
 
     public int getBonus(){
         return bonus;
-    }
-
-    private List<Integer> numberSort(List<Integer> numbers){
-        Collections.sort(numbers);
-
-        return numbers;
     }
 
     public List<Lotto> lottoList(){

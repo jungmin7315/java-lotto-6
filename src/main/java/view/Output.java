@@ -41,6 +41,6 @@ public class Output {
 
     public void totalReturn(){
         double totalReturn = controller.totalReturn();
-        System.out.printf("총 수익률은 %.1f%% 입니다", totalReturn);
+        System.out.printf("총 수익률은 %.1f%%입니다.", totalReturn);
     }
 }

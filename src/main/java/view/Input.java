@@ -3,6 +3,7 @@ package view;
 import camp.nextstep.edu.missionutils.Console;
 import controller.Controller;
 import model.Lotto;
+import model.Money;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +26,9 @@ public class Input {
             if(moneyVaildate(money) && checkUnit(money)){
                 controller.setMoney(money);
                 controller.addLotto(money/UNIT_MONEY);
+                return;
             }
+            Money();
         } catch (IllegalArgumentException e){
             System.out.println("[ERROR] 숫자를 입력해주세요.");
             Money();
@@ -33,13 +36,13 @@ public class Input {
     }
 
     public int sumthing(){
-        int money = 0;
+        int number = 0;
         try{
-            money = Integer.parseInt(Console.readLine());
+            number = Integer.parseInt(Console.readLine());
         } catch (NumberFormatException e){
             throw new IllegalArgumentException();
         }
-        return money;
+        return number;
     }
 
     private boolean moneyVaildate(int money){
@@ -66,18 +69,22 @@ public class Input {
         }
     }
 
+    private int winnigSumthing(String number){
+        int winningNum = 0;
+        try{
+            winningNum = Integer.parseInt(number);
+        } catch (NumberFormatException e){
+            System.out.println("[ERROR] 숫자를 입력해주세요");
+            throw new IllegalArgumentException();
+        }
+        return winningNum;
+    }
+
     public void winnigLotto(){
         try{
             winnigInput();
             System.out.println();
-        } catch (NumberFormatException e){
-            System.out.println("[ERROR] 숫자를 입력해주세요");
-            winnigLotto();
-        } catch (IllegalArgumentException e){
-            System.out.println("[ERROR] 6개의 번호를 입력해주세요.");
-            winnigLotto();
-        } catch (IllegalStateException e){
-            System.out.println("[ERROR] 중복된 숫자는 입력할 수 없습니다.");
+        } catch (IllegalArgumentException e) {
             winnigLotto();
         }
     }
@@ -90,7 +97,7 @@ public class Input {
         List<Integer> numbers = new ArrayList<>();
 
         for(int i = 0 ; i < number.length ; i++){
-            numbers.add(Integer.parseInt(number[i]));
+            numbers.add(winnigSumthing(number[i]));
         }
         if(winnigVaildate(numbers)){
             controller.addWinnigLotto(numbers);
